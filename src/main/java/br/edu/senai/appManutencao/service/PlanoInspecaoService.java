@@ -16,7 +16,7 @@ public class PlanoInspecaoService {
 	private IPlanoInspecaoRepository planoInspecaoRepository;
 	
 	public  List<PlanoInspecao> obterLista() {
-		return (List<PlanoInspecao>)planoInspecaoRepository.findAll(Sort.by(Sort.Direction.ASC, "modelo"));
+		return (List<PlanoInspecao>)planoInspecaoRepository.findAll(Sort.by(Sort.Direction.ASC, "elementos"));
 	}
 	
 	public PlanoInspecao obterPorId(Integer id) {

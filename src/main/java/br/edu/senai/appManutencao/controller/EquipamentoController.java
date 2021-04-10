@@ -35,7 +35,7 @@ public class EquipamentoController {
 		equipamentoService.incluir(equipamento);
 	}
 			
-	@PutMapping(value = "/{id}")
+	@GetMapping(value = "/{id}")
 	public Equipamento obterPorId(@PathVariable Integer id) {
 		return equipamentoService.obterPorId(id);
 	}

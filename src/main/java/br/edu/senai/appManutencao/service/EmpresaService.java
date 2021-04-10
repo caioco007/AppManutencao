@@ -16,7 +16,7 @@ public class EmpresaService {
 	private IEmpresaRepository empresaRepository;
 	
 	public  List<Empresa> obterLista() {
-		return (List<Empresa>)empresaRepository.findAll(Sort.by(Sort.Direction.ASC, "modelo"));
+		return (List<Empresa>)empresaRepository.findAll(Sort.by(Sort.Direction.ASC, "nome"));
 	}
 	
 	public Empresa obterPorId(Integer id) {

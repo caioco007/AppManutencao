@@ -37,7 +37,7 @@ public class PlanoInspecaoController {
 		inspecaoService.incluir(inspecao);
 	}
 			
-	@PutMapping(value = "/{id}")
+	@GetMapping(value = "/{id}")
 	public PlanoInspecao obterPorId(
 			@PathVariable Integer id
 			) {

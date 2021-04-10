@@ -16,7 +16,7 @@ public class PlanoManutencaoService {
 	private IPlanoManutencaoRepository planoManutencaoRepository;
 	
 	public  List<PlanoManutencao> obterLista() {
-		return (List<PlanoManutencao>)planoManutencaoRepository.findAll(Sort.by(Sort.Direction.ASC, "modelo"));
+		return (List<PlanoManutencao>)planoManutencaoRepository.findAll(Sort.by(Sort.Direction.ASC, "atividades"));
 	}
 	
 	public PlanoManutencao obterPorId(Integer id) {

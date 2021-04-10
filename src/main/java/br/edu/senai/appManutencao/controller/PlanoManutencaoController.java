@@ -37,7 +37,7 @@ public class PlanoManutencaoController {
 		manutencaoService.incluir(manutencao);
 	}
 			
-	@PutMapping(value = "/{id}")
+	@GetMapping(value = "/{id}")
 	public PlanoManutencao obterPorId(
 			@PathVariable Integer id
 			) {
