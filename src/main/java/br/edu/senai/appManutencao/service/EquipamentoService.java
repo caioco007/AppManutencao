@@ -16,7 +16,7 @@ public class EquipamentoService{
 	private IEquipamentoRepository equipamentoRepository;
 	
 	public  List<Equipamento> obterLista() {
-		return (List<Equipamento>)equipamentoRepository.findAll(Sort.by(Sort.Direction.ASC, "modelo"));
+		return (List<Equipamento>)equipamentoRepository.findAll(Sort.by(Sort.Direction.ASC, "nome"));
 	}
 	
 	public Equipamento obterPorId(Integer id) {
