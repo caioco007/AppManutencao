@@ -20,6 +20,9 @@ public class Equipamento {
 	@OneToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "idInspecao")
 	private PlanoInspecao inspecao;
+	@ManyToOne(cascade = CascadeType.DETACH)
+	@JoinColumn(name = "idEmpresa")
+	private Empresa empresa;
 	
 	public Integer getId() {
 		return id;
@@ -32,6 +35,12 @@ public class Equipamento {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 		
 }
