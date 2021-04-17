@@ -60,7 +60,8 @@ public class PlanoInspecao {
 	}
 	public void setFrequencia(String frequencia) {
 		this.frequencia = frequencia;
-	}
-	
-	
+	}	
+	public List<PlanoManutencao> getManutencao() {
+		return manutencao;
+	}	
 }
