@@ -1,14 +1,22 @@
 package br.edu.senai.appManutencao.model;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "TManutencao")
-public class PlanoManutencao {
+public class PlanoManutencao implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +25,11 @@ public class PlanoManutencao {
 	private String atividades;
 	private String localizacao;
 	private String frequencia;
-	
+	@ManyToOne(cascade = CascadeType.DETACH)
+	@JoinTable(name = "TInspecaoManutencao",	
+		joinColumns = {@JoinColumn(name="idInspecao")},
+		inverseJoinColumns = {@JoinColumn(name="idManutencao")})
+	private PlanoInspecao inspecao;
 	
 	public Integer getId() {
 		return id;
@@ -49,6 +61,11 @@ public class PlanoManutencao {
 	public void setFrequencia(String frequencia) {
 		this.frequencia = frequencia;
 	}
-	
-	
+	public PlanoInspecao getInspecao() {
+		return inspecao;
+	}
+	public void setInspecao(PlanoInspecao inspecao) {
+		this.inspecao = inspecao;
+	}
+		
 }

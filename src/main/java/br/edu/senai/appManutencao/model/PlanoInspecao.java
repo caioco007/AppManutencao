@@ -1,20 +1,26 @@
 package br.edu.senai.appManutencao.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "TInspecao")
-public class PlanoInspecao {
+public class PlanoInspecao implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,12 +29,12 @@ public class PlanoInspecao {
 	private String elementos;
 	private String tipo;
 	private String frequencia;
-	@OneToMany(cascade = CascadeType.DETACH)
-	@JoinTable(name = "TInspecaoManutencao",	
-		joinColumns = {@JoinColumn(name="idInspecao")},
-		inverseJoinColumns = {@JoinColumn(name="idManutencao")})
+	@OneToMany(mappedBy = "inspecao", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonBackReference
 	private List<PlanoManutencao> manutencao;
-	
+	@OneToOne(cascade = CascadeType.DETACH)
+	@JoinColumn(name = "idEquipamento")
+	private Equipamento equipamento;	
 	
 		
 	public Integer getId() {
@@ -60,8 +66,16 @@ public class PlanoInspecao {
 	}
 	public void setFrequencia(String frequencia) {
 		this.frequencia = frequencia;
-	}	
+	}
 	public List<PlanoManutencao> getManutencao() {
 		return manutencao;
-	}	
+	}
+	public Equipamento getEquipamento() {
+		return equipamento;
+	}
+	public void setEquipamento(Equipamento equipamento) {
+		this.equipamento = equipamento;
+	}
+	
+	
 }

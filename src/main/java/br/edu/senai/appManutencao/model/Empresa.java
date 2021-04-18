@@ -1,34 +1,35 @@
 package br.edu.senai.appManutencao.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "TEmpresa")
-public class Empresa {
+public class Empresa implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private String cnpj;
-	private String contato;	
-	@OneToMany(cascade = CascadeType.DETACH)
-	@JoinTable(name = "TEmpresaEquipamento",	
-	joinColumns = {@JoinColumn(name="idEmpresa")},
-	inverseJoinColumns = {@JoinColumn(name="idEquipamento")})	
-	private List<Equipamento>equipamentos;
-	
-	
+	private String contato;		
+	@OneToMany(mappedBy = "empresa", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonBackReference	
+	private List<Equipamento>equipamentos;	
+		
 	public Integer getId() {
 		return id;
 	}
