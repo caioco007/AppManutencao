@@ -44,7 +44,7 @@ public class PlanoManutencaoController {
 		return manutencaoService.obterPorId(id);
 	}
 	
-	@DeleteMapping(value = "/{id}/excluir")
+	@GetMapping(value = "/{id}/excluir")
 	public void excluir(
 				@PathVariable Integer id
 			) {
